@@ -8,7 +8,7 @@ keywords: `nodejs`, `typescript`, `express`
 
 ## 과제 설명
 
-이 과제는 typescript를 이용한 restful 서버 개발 과제입니다. 책대여 시스템을 단계별로 작성해주시면 됩니다. 각 level 별로 브랜치를 생성하고 풀리퀘를 생성하여 correctcode에 리뷰를 맡겨보세요!
+이 과제는 typescript를 이용한 restful 서버 개발 과제입니다. 책대여 시스템을 단계별로 작성해주시면 됩니다. 각 level 별로 브랜치를 만들어 작업하고 풀리퀘를 생성하여 correctcode에 리뷰를 맡겨보세요!
 
 [correctcode 바로가기](https://correctcode.dev)
 
