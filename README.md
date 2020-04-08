@@ -16,12 +16,16 @@ keywords: `nodejs`, `typescript`, `express`
 
 생성할 브랜치: `feature/typescript`
 
-[Typescript](https://www.npmjs.com/package/typescript)를 설치하여 컴파일 환경을 작성하고, [nodemon](https://www.npmjs.com/package/nodemon)으로 코드 수정시 자동으로 서버가 재시동 되도록 해보세요.
+다음의 라이브러리들의 사용법을 확인하고 설치하여 서버 개발을 준비해보세요!
 
-코드 스타일은 구글 타입스크립트 스타일을 사용해보세요. [google/gts](https://www.npmjs.com/package/gts)
+- [Typescript](https://www.npmjs.com/package/typescript): 타입스크립트 환경 준비
+- 코드 스타일 툴
+  - [prettier](https://www.npmjs.com/package/prettier): 코드 자동 포맷 툴
+  - [eslint](https://www.npmjs.com/package/eslint): 린트(코드 자동 포맷)
+  - 이외 필요한 eslint-plugins 등등(타입스크립트 린팅을 위해 필요)
+- [nodemon](https://www.npmjs.com/package/nodemon): 코드 수정시 서버 자동 재시작
 
 완성 후 풀리퀘스트를 만들어 코드리뷰를 요청해 보세요
-
 
 ### Step2
 
