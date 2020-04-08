@@ -1,4 +1,4 @@
-# Typescript 과제
+# 책 대여 시스템 만들기
 
 keywords: `nodejs`, `typescript`, `express`
 
@@ -8,11 +8,11 @@ keywords: `nodejs`, `typescript`, `express`
 
 ## 과제 설명
 
-이 과제는 typescript를 이용한 restful 서버 개발 과제입니다. 책대여 시스템을 단계별로 작성해주시면 됩니다. 각 level 별로 브랜치를 만들어 작업하고 풀리퀘를 생성하여 correctcode에 리뷰를 맡겨보세요!
+이 과제는 typescript를 이용한 restful 서버 개발 과제입니다. 책대여 시스템을 단계별로 작성해주시면 됩니다. 각 Step 별로 브랜치를 만들어 작업하고 풀리퀘를 생성하여 correctcode에 리뷰를 맡겨보세요!
 
 [correctcode 바로가기](https://correctcode.dev)
 
-### level1
+### Step1
 
 생성할 브랜치: `feature/typescript`
 
@@ -20,29 +20,29 @@ keywords: `nodejs`, `typescript`, `express`
 
 코드 스타일은 구글 타입스크립트 스타일을 사용해보세요. [google/gts](https://www.npmjs.com/package/gts)
 
-풀리퀘스트를 만들어 코드리뷰를 요청해 보세요
+완성 후 풀리퀘스트를 만들어 코드리뷰를 요청해 보세요
 
 
-### level2
+### Step2
 
 생성할 브랜치: `feature/book`
 
 mariadb 데이터베이스를 생성하고 책을 등록/수정 하는 컨트롤러를 구현해 보세요. 책은 이름, 저자, 등록일, 수정일을 가지고 있습니다.
 
-풀리퀘스트를 만들어 코드리뷰를 요청해 보세요
+완성 후 풀리퀘스트를 만들어 코드리뷰를 요청해 보세요
 
-### level3
+### Step3
 
 생성할 브랜치: `feature/user`
 
 유저를 생성하고, 로그인이 가능하도록 인증기능을 만들어 보세요. 유저는 이름과 비밀번호를 가지고 있습니다.
 
-풀리퀘스트를 만들어 코드리뷰를 요청해 보세요
+완성 후 풀리퀘스트를 만들어 코드리뷰를 요청해 보세요
 
-### level4(final)
+### Step4(final)
 
 생성할 브랜치: `feature/rent`
 
 유저가 책을 빌리는 관계를 만들어서 대여/반납 기능을 만들어 보세요. 대여라는 관계에는 사용자와 책을 이어주고, 대여일자와 반납일자가 기록되어야합니다.
 
-풀리퀘스트를 만들어 코드리뷰를 요청해 보세요
+완성 후 풀리퀘스트를 만들어 코드리뷰를 요청해 보세요
