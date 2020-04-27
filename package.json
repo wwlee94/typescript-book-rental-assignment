@@ -2,9 +2,9 @@
   "name": "typescript-level-easy-1",
   "version": "1.0.0",
   "description": "프로그라피 6기 nodejs 스터디 과제 레포입니다.",
-  "main": "App.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch src/ src/App.ts",
+    "start": "nodemon --watch src/ src/index.ts",
     "test": "jest"
   },
   "repository": {
