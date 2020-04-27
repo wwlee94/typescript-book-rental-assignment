@@ -1,8 +1,8 @@
 // eslint-disable-next-line prettier/prettier
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
-export class Book {
+export class Book extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
