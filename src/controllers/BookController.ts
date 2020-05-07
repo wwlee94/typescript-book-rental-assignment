@@ -1,4 +1,3 @@
-// eslint-disable-next-line prettier/prettier
 import { Body, Delete, Get, HttpCode, HttpError, JsonController, Param, Post, Put } from 'routing-controllers';
 import { Book } from '../entity/Book';
 import { BaseController } from './BaseController';
@@ -48,6 +47,7 @@ export class BookController extends BaseController {
 
     const book: Book | undefined = await Book.findOne(id);
     if (!book) throw new HttpError(404, `해당 ${id}에 대한 책 정보를 찾을 수 없습니다.`);
-    return await book.remove();
+    await book.remove();
+    return 'Success Delete Book !';
   }
 }
