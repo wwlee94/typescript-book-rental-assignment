@@ -34,8 +34,9 @@ export class BookController extends BaseController {
     const hashPassword = await bcrypt.hash(user.password, salt).catch(err => {
       throw new InternalServerError(err.message);
     });
-    console.log(hashPassword);
+    console.log('hash: ' + hashPassword);
     user.password = hashPassword;
+    delete user.passwordConfirm;
     return user.save();
   }
 
