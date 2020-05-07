@@ -1,10 +1,10 @@
 import express from 'express';
+import { useExpressServer } from 'routing-controllers';
 
 const app = express();
 
-app.get('/', (req: express.Request, res: express.Response) => {
-  res.send('Hello Fu..ck TypeScript');
+useExpressServer(app, {
+  controllers: [`${__dirname}/controllers/**`],
 });
-app.listen(3000, 'localhost', () => {
-  console.log('서버 시작');
-});
+
+export default app;
