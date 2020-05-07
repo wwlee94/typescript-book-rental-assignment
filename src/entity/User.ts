@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -7,9 +7,9 @@ export class User extends BaseEntity {
   id!: number;
 
   @Column()
-  @IsString()
+  @IsEmail()
   @IsNotEmpty()
-  name!: string;
+  email!: string;
 
   @Column()
   @IsString()
@@ -22,4 +22,16 @@ export class User extends BaseEntity {
   @IsString()
   @IsNotEmpty()
   passwordConfirm!: string;
+}
+
+export class UserAuth {
+  @Column()
+  @IsString()
+  @IsNotEmpty()
+  email!: string;
+
+  @Column()
+  @IsString()
+  @IsNotEmpty()
+  password!: string;
 }
