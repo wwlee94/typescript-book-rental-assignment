@@ -4,7 +4,7 @@ import { User } from '../entity/User';
 import { BaseController } from './BaseController';
 
 @JsonController()
-export class BookController extends BaseController {
+export class UserController extends BaseController {
   @Get('/users')
   public async getAll() {
     const users: User[] = await User.find();
@@ -13,12 +13,11 @@ export class BookController extends BaseController {
   }
 
   @Get('/users/:id')
-  // @OnUndefined(404)
   public async findUser(@Param('id') id: number) {
-    if (!id) throw new HttpError(400, 'id는 number 타입입니다.');
+    // if (!id) throw new HttpError(400, 'id는 number 타입입니다.');
 
     const user: User | undefined = await User.findOne(id);
-    if (!user) throw new HttpError(404, `해당 ${id}에 대한 책 정보를 찾을 수 없습니다.`);
+    if (!user) throw new HttpError(404, '해당 사용자를 찾을 수 없습니다.');
     return user;
   }
 
@@ -30,11 +29,9 @@ export class BookController extends BaseController {
     const salt = await bcrypt.genSalt(Number(process.env.SALT_ROUNDS)).catch(err => {
       throw new InternalServerError(err.message);
     });
-    console.log('salt: ' + salt);
     const hashPassword = await bcrypt.hash(user.password, salt).catch(err => {
       throw new InternalServerError(err.message);
     });
-    console.log('hash: ' + hashPassword);
     user.password = hashPassword;
     delete user.passwordConfirm;
     return user.save();
@@ -45,7 +42,7 @@ export class BookController extends BaseController {
     if (!id) throw new HttpError(400, 'id는 number 타입입니다.');
 
     const user: User | undefined = await User.findOne(id);
-    if (!user) throw new HttpError(404, `해당 ${id}에 대한 책 정보를 찾을 수 없습니다.`);
+    if (!user) throw new HttpError(404, '해당 사용자를 찾을 수 없습니다.');
     await user.remove();
     return 'Success Delete User !';
   }
