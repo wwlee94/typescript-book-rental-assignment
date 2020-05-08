@@ -14,7 +14,7 @@ export class UserController extends BaseController {
 
   @Get('/users/:id')
   public async findUser(@Param('id') id: number) {
-    // if (!id) throw new HttpError(400, 'id는 number 타입입니다.');
+    if (!id) throw new HttpError(400, 'id는 number 타입입니다.');
 
     const user: User | undefined = await User.findOne(id);
     if (!user) throw new HttpError(404, '해당 사용자를 찾을 수 없습니다.');
@@ -44,6 +44,6 @@ export class UserController extends BaseController {
     const user: User | undefined = await User.findOne(id);
     if (!user) throw new HttpError(404, '해당 사용자를 찾을 수 없습니다.');
     await user.remove();
-    return 'Success Delete User !';
+    return { message: 'Success delete book!' };
   }
 }

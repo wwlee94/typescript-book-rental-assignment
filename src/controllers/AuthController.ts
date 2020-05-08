@@ -13,10 +13,10 @@ export class AuthController extends BaseController {
         email: body.email,
       },
     });
-    if (!user) throw new HttpError(401, '해당 사용자를 찾을 수 없습니다.');
+    if (!user) throw new HttpError(401, '아이디 또는 비밀번호가 일치하지 않습니다.');
 
     const result = await bcrypt.compare(body.password, user.password);
-    if (!result) throw new HttpError(401, '비밀번호가 일치하지 않습니다.');
+    if (!result) throw new HttpError(401, '아이디 또는 비밀번호가 일치하지 않습니다.');
 
     const payload = {
       email: user.email,

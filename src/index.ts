@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import app from './App';
-dotenv.config({ path: `${__dirname}/../.env.example` });
+dotenv.config({ path: `${__dirname}/../.env` });
 
 // Connect typeORM mysql
 createConnection()

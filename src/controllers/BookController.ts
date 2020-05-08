@@ -48,6 +48,6 @@ export class BookController extends BaseController {
     const book: Book | undefined = await Book.findOne(id);
     if (!book) throw new HttpError(404, `해당 ${id}에 대한 책 정보를 찾을 수 없습니다.`);
     await book.remove();
-    return 'Success Delete Book !';
+    return { message: 'Success delete book!' };
   }
 }
