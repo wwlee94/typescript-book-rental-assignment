@@ -11,11 +11,8 @@ export class BookController extends BaseController {
     return books;
   }
 
-  @Get('/books/:id')
-  // @OnUndefined(404)
+  @Get('/books/:id([0-9]+)')
   public async findBook(@Param('id') id: number) {
-    if (!id) throw new HttpError(400, 'id는 number 타입입니다.');
-
     const book: Book | undefined = await Book.findOne(id);
     if (!book) throw new HttpError(404, `해당 ${id}에 대한 책 정보를 찾을 수 없습니다.`);
     return book;
@@ -24,15 +21,11 @@ export class BookController extends BaseController {
   @HttpCode(201)
   @Post('/books')
   public async createBook(@Body({ validate: true }) book: Book) {
-    // if (!book.name) throw new HttpError(422, '책 이름이 없습니다.');
-    // if (!book.author) throw new HttpError(422, '책 저자가 없습니다.');
     return book.save();
   }
 
-  @Put('/books/:id')
+  @Put('/books/:id([0-9]+)')
   public async updateBook(@Param('id') id: number, @Body({ validate: true }) book: Book) {
-    if (!id) throw new HttpError(400, 'id는 number 타입입니다.');
-
     const updateBook: Book | undefined = await Book.findOne(id);
     if (!updateBook) throw new HttpError(404, `해당 ${id}에 대한 책 정보를 찾을 수 없습니다.`);
 
@@ -41,10 +34,8 @@ export class BookController extends BaseController {
     return updateBook.save();
   }
 
-  @Delete('/books/:id')
+  @Delete('/books/:id([0-9]+)')
   public async deleteBook(@Param('id') id: number) {
-    if (!id) throw new HttpError(400, 'id는 number 타입입니다.');
-
     const book: Book | undefined = await Book.findOne(id);
     if (!book) throw new HttpError(404, `해당 ${id}에 대한 책 정보를 찾을 수 없습니다.`);
     await book.remove();
