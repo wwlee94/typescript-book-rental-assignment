@@ -1,10 +1,12 @@
-import { Body, Get, HttpCode, HttpError, JsonController, Param, Patch, Post } from 'routing-controllers';
+import { Body, Get, HttpCode, HttpError, JsonController, Param, Patch, Post, UseBefore } from 'routing-controllers';
 import { Book } from '../entity/Book';
 import { Rental } from '../entity/Rental';
 import { User } from '../entity/User';
+import { JwtAuth } from '../middleware/JwtAuth';
 import { BaseController } from './BaseController';
 
 @JsonController()
+@UseBefore(JwtAuth)
 export class RentalController extends BaseController {
   // 특정 사용자가 가지고 있는 모든 대여 목록 가져옴
   @Get('/rentals/users/:userId([0-9]+)')

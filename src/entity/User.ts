@@ -17,7 +17,7 @@ export class User extends BaseEntity {
   @IsNotEmpty()
   password!: string;
 
-  // entity에 추가 안하면서 find에서 출력 안되도록?
+  // column으로 생성 안되도록
   // @Column({ select: false })
   // @Exclude()
   @IsString()

@@ -1,10 +1,12 @@
 import bcrypt from 'bcrypt';
-import { Body, Delete, Get, HttpCode, HttpError, InternalServerError, JsonController, Param, Post } from 'routing-controllers';
+import { Body, Delete, Get, HttpCode, HttpError, InternalServerError, JsonController, Param, Post, UseBefore } from 'routing-controllers';
 import { User } from '../entity/User';
+import { JwtAuth } from '../middleware/JwtAuth';
 import { BaseController } from './BaseController';
 
 @JsonController()
 export class UserController extends BaseController {
+  @UseBefore(JwtAuth)
   @Get('/users')
   public async getAll() {
     const users: User[] = await User.find();
@@ -12,6 +14,7 @@ export class UserController extends BaseController {
     return users;
   }
 
+  @UseBefore(JwtAuth)
   @Get('/users/:id([0-9]+)')
   public async findUser(@Param('id') id: number) {
     const user: User | undefined = await User.findOne(id);
@@ -35,6 +38,7 @@ export class UserController extends BaseController {
     return user.save();
   }
 
+  @UseBefore(JwtAuth)
   @Delete('/users/:id([0-9]+)')
   public async deleteUser(@Param('id') id: number) {
     const user: User | undefined = await User.findOne(id);
