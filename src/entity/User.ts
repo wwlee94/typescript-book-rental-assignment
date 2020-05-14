@@ -1,5 +1,6 @@
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Rental } from './Rental';
 
 @Entity()
 export class User extends BaseEntity {
@@ -22,6 +23,10 @@ export class User extends BaseEntity {
   @IsString()
   @IsNotEmpty()
   passwordConfirm!: string;
+
+  // User(1) <-> Rental(*)
+  @OneToMany(type => Rental, rental => rental.user)
+  rentals!: Rental[];
 }
 
 export class UserAuth {

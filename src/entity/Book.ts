@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { IsNotEmpty, IsString } from 'class-validator';
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Rental } from './Rental';
 
 @Entity()
 export class Book extends BaseEntity {
@@ -22,4 +23,8 @@ export class Book extends BaseEntity {
 
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt!: Date;
+
+  // Book(1) <-> Rental(1)
+  @OneToOne(type => Rental, rental => rental.book)
+  rental!: Rental;
 }
