@@ -1,4 +1,4 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Book } from './Book';
 import { User } from './User';
 
@@ -19,7 +19,7 @@ export class Rental extends BaseEntity {
   user!: User;
 
   // Rental(1) <-> Book(1)
-  @OneToOne(type => Book, book => book.rental)
+  @ManyToOne(type => Book, book => book.rentals, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'bookId' })
   book!: Book;
 

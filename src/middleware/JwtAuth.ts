@@ -9,10 +9,6 @@ export class JwtAuth implements ExpressMiddlewareInterface {
 
     jwt.verify(token, process.env.JWT_SECRET_KEY!, (err: any, info: any) => {
       if (err) return res.json(new UnauthorizedError('인증에 실패했습니다.'));
-      console.log(info);
-      // 여기서 인증만 되면 해당 토큰으로 다른 서비스를 이용할 수 있는 건지 ?!
-      // 아니면 토큰에 이메일을 담았는데 라우터에서 토큰의 이메일과 id로 조회한 이메일이 같음을 검증해야 하는 건지?!
-      // req.user = info;
       return next();
     });
   }
