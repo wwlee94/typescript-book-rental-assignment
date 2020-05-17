@@ -1,23 +1,16 @@
 import bcrypt from 'bcrypt';
-import { Body, Delete, Get, HttpCode, HttpError, InternalServerError, JsonController, Param, Post, UseBefore } from 'routing-controllers';
+import { Body, Delete, Get, HttpCode, HttpError, InternalServerError, JsonController, Post, Req, UseBefore } from 'routing-controllers';
 import { User } from '../entity/User';
 import { JwtAuth } from '../middleware/JwtAuth';
+import { RequestWithUser } from '../types';
 import { BaseController } from './BaseController';
 
 @JsonController()
 export class UserController extends BaseController {
   @UseBefore(JwtAuth)
   @Get('/users')
-  public async getAll() {
-    const users: User[] = await User.find();
-    if (users.length === 0) throw new HttpError(204);
-    return users;
-  }
-
-  @UseBefore(JwtAuth)
-  @Get('/users/:id([0-9]+)')
-  public async findUser(@Param('id') id: number) {
-    const user: User | undefined = await User.findOne(id);
+  public async findUser(@Req() req: RequestWithUser) {
+    const user = req.user;
     if (!user) throw new HttpError(404, '해당 사용자를 찾을 수 없습니다.');
     return user;
   }
@@ -39,11 +32,11 @@ export class UserController extends BaseController {
   }
 
   @UseBefore(JwtAuth)
-  @Delete('/users/:id([0-9]+)')
-  public async deleteUser(@Param('id') id: number) {
-    const user: User | undefined = await User.findOne(id);
+  @Delete('/users')
+  public async deleteUser(@Req() req: RequestWithUser) {
+    const user = req.user;
     if (!user) throw new HttpError(404, '해당 사용자를 찾을 수 없습니다.');
     await user.remove();
-    return { message: 'Success delete book!' };
+    return { message: 'Success delete user!' };
   }
 }

@@ -19,6 +19,7 @@ export class BookController extends BaseController {
     return book;
   }
 
+  @UseBefore(JwtAuth)
   @HttpCode(201)
   @Post('/books')
   public async createBook(@Body({ validate: true }) book: Book) {

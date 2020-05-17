@@ -21,7 +21,7 @@ export class AuthController extends BaseController {
     const payload = {
       email: user.email,
     };
-    const options = { expiresIn: '1h' };
+    const options = { expiresIn: '5h' };
     const token = await jwt.sign(payload, process.env.JWT_SECRET_KEY!, options); // process.env.JWT_SECRET_KEY -> ! 안 붙여주면 에러
     if (!token) throw new HttpError(500, '토큰 발급 실패 !');
     return { token: token };
