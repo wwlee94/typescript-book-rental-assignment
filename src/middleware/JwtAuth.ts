@@ -10,10 +10,10 @@ export class JwtAuth implements ExpressMiddlewareInterface {
     if (!token) return res.status(401).send(new UnauthorizedError('로그인을 위한 토큰이 없습니다.'));
 
     jwt.verify(token, process.env.JWT_SECRET_KEY!, async (err: any, info: any) => {
-      if (err || !info.email) return res.status(401).send(new UnauthorizedError('인증에 실패했습니다.'));
+      if (err || !info.id) return res.status(401).send(new UnauthorizedError('인증에 실패했습니다.'));
 
-      const email = info.email;
-      const user = await User.findOne({ where: { email } });
+      const id = info.id;
+      const user = await User.findOne({ where: { id } });
       if (!user) return res.status(404).send(new NotFoundError('존재하지 않는 사용자입니다.'));
 
       req.user = user;
