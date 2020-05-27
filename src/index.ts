@@ -1,16 +1,16 @@
 import dotenv from 'dotenv';
 import 'reflect-metadata';
-import { createConnection } from 'typeorm';
 import app from './App';
+import databaseConn from './database/databaseConn';
 dotenv.config({ path: `${__dirname}/../.env` });
 
-// Connect typeORM mysql
-createConnection()
-  .then(() => {
-    console.log('Database Connected :)');
-  })
-  .catch(error => console.log(error));
+// Connect typeORM mysql + server
+const listen = async () => {
+  await databaseConn();
 
-app.listen(3000, 'localhost', () => {
-  console.log('Server running :)');
-});
+  app.listen(3000, 'localhost', () => {
+    console.log('Server running :)');
+  });
+};
+
+listen();

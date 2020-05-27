@@ -18,10 +18,11 @@ export class AuthController extends BaseController {
     const result = await bcrypt.compare(body.password, user.password);
     if (!result) throw new HttpError(401, '아이디 또는 비밀번호가 일치하지 않습니다.');
 
+    // 인증 후 토큰 발급
     const payload = {
-      email: user.email,
+      id: user.id,
     };
-    const options = { expiresIn: '1h' };
+    const options = { expiresIn: '5h' };
     const token = await jwt.sign(payload, process.env.JWT_SECRET_KEY!, options); // process.env.JWT_SECRET_KEY -> ! 안 붙여주면 에러
     if (!token) throw new HttpError(500, '토큰 발급 실패 !');
     return { token: token };

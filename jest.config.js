@@ -1,7 +1,7 @@
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
 module.exports = {
-  testTimeout: 5000,
+  testTimeout: 10000,
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -59,7 +59,7 @@ module.exports = {
   globals: {
     'ts-jest': {
       diagnostics: {
-        pathRegex: /\.(spec)\.ts$/,
+        pathRegex: '.(spec).ts$',
         warnOnly: true,
       },
     },
@@ -124,7 +124,7 @@ module.exports = {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // setupFilesAfterEnv: [],
+  setupFilesAfterEnv: ['<rootDir>/tests/setup.ts'],
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
   // snapshotSerializers: [],
@@ -148,7 +148,7 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/'],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
-  testRegex: [/\.(spec)\.ts$/],
+  testRegex: ['.(spec).ts$'],
 
   // This option allows the use of a custom results processor
   // testResultsProcessor: null,

@@ -3,5 +3,5 @@ node_modules/
 dist/
 tmp/
 temp/
-ormconfig.json
+ormconfig.*
 .env

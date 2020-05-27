@@ -1,5 +1,6 @@
-import { Body, Delete, Get, HttpCode, HttpError, JsonController, Param, Post, Put } from 'routing-controllers';
+import { Body, Delete, Get, HttpCode, HttpError, JsonController, Param, Post, Put, UseBefore } from 'routing-controllers';
 import { Book } from '../entity/Book';
+import { JwtAuth } from '../middleware/JwtAuth';
 import { BaseController } from './BaseController';
 
 @JsonController()
@@ -18,12 +19,14 @@ export class BookController extends BaseController {
     return book;
   }
 
+  @UseBefore(JwtAuth)
   @HttpCode(201)
   @Post('/books')
   public async createBook(@Body({ validate: true }) book: Book) {
     return book.save();
   }
 
+  @UseBefore(JwtAuth)
   @Put('/books/:id([0-9]+)')
   public async updateBook(@Param('id') id: number, @Body({ validate: true }) book: Book) {
     const updateBook: Book | undefined = await Book.findOne(id);
@@ -34,6 +37,7 @@ export class BookController extends BaseController {
     return updateBook.save();
   }
 
+  @UseBefore(JwtAuth)
   @Delete('/books/:id([0-9]+)')
   public async deleteBook(@Param('id') id: number) {
     const book: Book | undefined = await Book.findOne(id);
